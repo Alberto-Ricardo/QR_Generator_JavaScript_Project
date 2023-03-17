@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(51, 40, 40);
+}
+
+h1 {
+    font-size: 2em;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    color: lightseagreen;
+}
+
+button:hover {
+    color: rgb(43, 45, 199) ;
+    background-color: aquamarine;
+}
+
+section {
+    text-align: center;
+}
+img {
+    margin: auto;
+    margin-top: 40px;
+}

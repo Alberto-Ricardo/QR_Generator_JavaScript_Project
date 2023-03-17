@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>QR Generator</title>
+</head>
+<body>
+    <section>
+        <h1>Enter text to make a QR code of it</h1>
+        <input type="text" id="qr-data" onchange="generateQR()">
+        <button type="submit" id="qr_button" >Generate Code!</button>
+        <button onclick="downloadDivPng('qrcode')">Download QR Code!</button>
+
+        <div id="qrcode"></div>
+
+    </section>
+    
+</body>
+
+
+<script src="qrcode.min.js"></script>
+<script>
+    var qrdata = document.getElementById('qr-data');
+    var qrcode = new QRCode(document.getElementById('qrcode'));
+
+    function generateQR(){
+        var data = qrdata.value;
+        qrcode.makeCode(data);
+    }
+
+    function downloadDivPng(qrcodeID) {
+        var divElement = document.getElementById(qrcodeID);
+        var canvas = document.createElement('canvas');
+        canvas.width = divElement.offsetWidth;
+        canvas.height = divElement.offsetHeight;
+        var context = canvas.getContext('2d');
+        
+        setTimeout(function(){
+            context.drawImage(document.getElementById(qrcodeID).firstChild, 0, 0);
+            var imgURL = canvas.toDataURL('image/png');
+            var link = document.createElement('a');
+            link.download ='qr-code.png';
+            link.href = imgURL;
+            link.click();
+        },  500);
+    }
+</script>
+
+</html>
